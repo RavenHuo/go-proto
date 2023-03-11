@@ -1,22 +1,23 @@
 #!/usr/bin/env bash
-cd $(dirname $0)
 
-PROTOC=protoc
-if (which protoc.exe) then
-    PROTOC=protoc.exe
-fi
+protos_dir="./protos"
+domin="github.com"
+org="RavenHuo"
+# 这里是路径
+project_name="go-proto/stock-proto"
+pb_package="pkg"
 
-version=`$PROTOC --version`
+## batch clean old code
+# gsed -i "s/^\(package\) \(.*;\)/\1 nonoapi;/" protos/**/*.proto
+sed -i "/option go_package.*/d" protos/**/*.proto
+files=$(ls -l ${protos_dir} |awk '/^d/ {print $NF}')
 
-for proto_file in protos/*/*.proto; do
-    ## 替换路径
-    pb_file=${proto_file/protos/pkg}
-    pb_file=${pb_file/.proto/.pb.go}
-    echo $proto_file
-    echo $pb_file
-    if [ ! -e $pb_file ] || [ $proto_file -nt $pb_file ]; then
 
-        echo "Compiling $proto_file -> $pb_file ..."
-        $PROTOC $proto_file --plugin=protoc-gen-go=/usr/local/bin/protoc-gen-go --go_out=plugins=grpc:.
-    fi
+echo "==============================================="
+echo "Compile"
+echo "==============================================="
+for dirname in $files
+do
+  echo "change compile package option => ${domin}/${org}/${project_name}/${pb_package}/${dirname}"
+  res=$(sed -i "s?^\(package .*;\)?\1\\noption go_package = \"${domin}\\/${org}\\/${project_name}\\/${pb_package}\\/${dirname}\";?" ${protos_dir}/${dirname}/*.proto)
 done

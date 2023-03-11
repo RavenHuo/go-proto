@@ -1,7 +1,7 @@
 syntax = "proto3";
 package goshare;
-
 option go_package = "github.com/RavenHuo/go-proto/stock-proto/pkg/goshare";
+
 
 // 投机套保标志
 enum HedgeType {

@@ -1,9 +1,9 @@
 syntax = "proto3";
 package goshare;
+option go_package = "github.com/RavenHuo/go-proto/stock-proto/pkg/goshare";
 
 import "goshare/order.proto";
 
-option go_package = "github.com/RavenHuo/go-proto/stock-proto/pkg/goshare";
 
 enum PositionSummationType {
   TOTAL     = 0;

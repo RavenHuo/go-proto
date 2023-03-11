@@ -1,9 +1,9 @@
 syntax = "proto3";
 package goshare;
-
-import "goshare/common.proto";
-
 option go_package = "github.com/RavenHuo/go-proto/stock-proto/pkg/goshare";
+
+import "common.proto";
+
 
 message OrderBook {
   double ask        = 1; /// 卖价
