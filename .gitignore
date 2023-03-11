@@ -1,0 +1,4 @@
+pkg/
+.idea/
+vendor/
+.DS_Store
