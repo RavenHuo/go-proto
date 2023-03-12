@@ -5,8 +5,8 @@ option go_package = "github.com/RavenHuo/go-proto/stock-proto/pkg/goshare";
 import "common.proto";
 import "market_data.proto";
 import "instrument.proto";
-import "sse.proto";
-import "xueqiu.proto";
+import "spider/sse.proto";
+import "spider/xueqiu.proto";
 
 
 
