@@ -35,7 +35,7 @@ for dirName in */;do
           echo "Compiling $proto_file -> $pb_file ..."
           # 输出到 ../${pb_package}
           # 一般都会使用source_relative,否则，就会按照option go_package里面的那个路径生成
-          # -I 表示包含全部
+          #  --proto_path 表示引用外部的proto
           $PROTOC --proto_path=${dirName} --proto_path=. --go_out=../${pb_package}/${dirName} --go_opt=paths=source_relative $proto_file --plugin=protoc-gen-go=../../bin/protoc-gen-go.exe
       fi
   done
