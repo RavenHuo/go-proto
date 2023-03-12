@@ -1,8 +1,7 @@
-
 syntax = "proto3";
 package goshare;
-
 option go_package = "github.com/RavenHuo/go-proto/stock-proto/pkg/goshare";
+
 
 // 单纯树形结构体
 message BranchTreeNode {

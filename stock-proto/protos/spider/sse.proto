@@ -1,7 +1,7 @@
 syntax = "proto3";
 package goshare.spider;
-
 option go_package = "github.com/RavenHuo/go-proto/stock-proto/pkg/spider";
+
 
 // SSEStockOption 上证交易所ETF期权
 message SSEStockOption {

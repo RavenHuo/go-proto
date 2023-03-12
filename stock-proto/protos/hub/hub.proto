@@ -1,7 +1,7 @@
 syntax = "proto3";
 package goshare.hub;
-
 option go_package = "github.com/RavenHuo/go-proto/stock-proto/pkg/hub";
+
 
 // 发往上游
 message ReqInsertOrder {
