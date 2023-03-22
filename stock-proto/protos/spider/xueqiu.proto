@@ -36,3 +36,12 @@ message Bonus {
 }
 
 message BonusList { repeated Bonus list = 1; }
+
+message StockItem {
+  string code = 1;
+  string current = 2;
+  string exchange = 3;
+  string ind_name = 4;
+  string name = 5;
+  double percentage = 6;
+}
