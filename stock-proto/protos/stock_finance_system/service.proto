@@ -1,0 +1,21 @@
+syntax = "proto3";
+package goshare.spider;
+option go_package = "github.com/RavenHuo/go-proto/stock_finance_system/pkg";
+
+service StockFinanceSystem {
+  rpc BuyStock(BuyStockRequest) returns (BuyStockResponse);
+  rpc SellStock(BuyStockRequest) returns (BuyStockResponse);
+}
+message BuyStockRequest {
+  int32 user_id = 1;
+  string symbol = 2;
+  string quantity = 3;
+  float price = 4;
+  bool is_virtual = 5;
+}
+
+message BuyStockResponse{
+  string id = 1;
+  int32 user_id = 2;
+  float balance = 3;
+}
