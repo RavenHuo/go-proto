@@ -4,8 +4,10 @@
 package stock_finance_system
 
 import (
+	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	grpc "google.golang.org/grpc"
 	math "math"
 )
 
@@ -413,4 +415,142 @@ var fileDescriptor_a0b84a42fa06f626 = []byte{
 	0xa6, 0x5e, 0x75, 0x8f, 0x76, 0x45, 0xed, 0xaf, 0x87, 0x73, 0x75, 0x9d, 0xf5, 0x38, 0xfa, 0xd6,
 	0x07, 0x17, 0x51, 0x97, 0x5c, 0x3c, 0xed, 0xee, 0xdf, 0xfc, 0x0e, 0x00, 0x00, 0xff, 0xff, 0x8b,
 	0x6d, 0xe3, 0x54, 0xf1, 0x03, 0x00, 0x00,
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// StockFinanceSystemServiceClient is the client API for StockFinanceSystemService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type StockFinanceSystemServiceClient interface {
+	BuyStock(ctx context.Context, in *BuyStockRequest, opts ...grpc.CallOption) (*BuyStockResponse, error)
+	SellStock(ctx context.Context, in *SellStockRequest, opts ...grpc.CallOption) (*SellStockResponse, error)
+	NewAccount(ctx context.Context, in *NewAccountReq, opts ...grpc.CallOption) (*NewAccountResp, error)
+}
+
+type stockFinanceSystemServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewStockFinanceSystemServiceClient(cc *grpc.ClientConn) StockFinanceSystemServiceClient {
+	return &stockFinanceSystemServiceClient{cc}
+}
+
+func (c *stockFinanceSystemServiceClient) BuyStock(ctx context.Context, in *BuyStockRequest, opts ...grpc.CallOption) (*BuyStockResponse, error) {
+	out := new(BuyStockResponse)
+	err := c.cc.Invoke(ctx, "/goshare.spider.StockFinanceSystemService/BuyStock", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *stockFinanceSystemServiceClient) SellStock(ctx context.Context, in *SellStockRequest, opts ...grpc.CallOption) (*SellStockResponse, error) {
+	out := new(SellStockResponse)
+	err := c.cc.Invoke(ctx, "/goshare.spider.StockFinanceSystemService/SellStock", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *stockFinanceSystemServiceClient) NewAccount(ctx context.Context, in *NewAccountReq, opts ...grpc.CallOption) (*NewAccountResp, error) {
+	out := new(NewAccountResp)
+	err := c.cc.Invoke(ctx, "/goshare.spider.StockFinanceSystemService/NewAccount", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// StockFinanceSystemServiceServer is the server API for StockFinanceSystemService service.
+type StockFinanceSystemServiceServer interface {
+	BuyStock(context.Context, *BuyStockRequest) (*BuyStockResponse, error)
+	SellStock(context.Context, *SellStockRequest) (*SellStockResponse, error)
+	NewAccount(context.Context, *NewAccountReq) (*NewAccountResp, error)
+}
+
+func RegisterStockFinanceSystemServiceServer(s *grpc.Server, srv StockFinanceSystemServiceServer) {
+	s.RegisterService(&_StockFinanceSystemService_serviceDesc, srv)
+}
+
+func _StockFinanceSystemService_BuyStock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BuyStockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StockFinanceSystemServiceServer).BuyStock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/goshare.spider.StockFinanceSystemService/BuyStock",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StockFinanceSystemServiceServer).BuyStock(ctx, req.(*BuyStockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StockFinanceSystemService_SellStock_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SellStockRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StockFinanceSystemServiceServer).SellStock(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/goshare.spider.StockFinanceSystemService/SellStock",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StockFinanceSystemServiceServer).SellStock(ctx, req.(*SellStockRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StockFinanceSystemService_NewAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NewAccountReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StockFinanceSystemServiceServer).NewAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/goshare.spider.StockFinanceSystemService/NewAccount",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StockFinanceSystemServiceServer).NewAccount(ctx, req.(*NewAccountReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _StockFinanceSystemService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "goshare.spider.StockFinanceSystemService",
+	HandlerType: (*StockFinanceSystemServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "BuyStock",
+			Handler:    _StockFinanceSystemService_BuyStock_Handler,
+		},
+		{
+			MethodName: "SellStock",
+			Handler:    _StockFinanceSystemService_SellStock_Handler,
+		},
+		{
+			MethodName: "NewAccount",
+			Handler:    _StockFinanceSystemService_NewAccount_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "service.proto",
 }
