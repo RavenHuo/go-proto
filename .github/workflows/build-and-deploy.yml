@@ -1,0 +1,32 @@
+name: AUTO CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  push_files:
+    # 工作流程中的push_files作业运行在ubuntu-latest环境中，即Ubuntu操作系统的最新版本。
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Execute Auto Build Shell Script
+        # 是一个官方提供的操作，它会自动检出仓库的代码，默认情况下会将代码检出到工作目录中。这个操作可以用于不同类型的仓库，包括 GitHub 仓库、GitLab 仓库等。
+        uses: actions/checkout@v2
+
+      - name: Execute Shell Script
+        run: sh stock-proto/make.sh
+
+      - name: Push Code
+        # 是一个官方提供的操作，它会自动检出仓库的代码，默认情况下会将代码检出到工作目录中。这个操作可以用于不同类型的仓库，包括 GitHub 仓库、GitLab 仓库等。
+        uses: actions/checkout@v2
+
+      - name: Push Changes
+        # 换行就用 |
+        run: |
+          git config --local user.email "965195920@qq.com"
+          git config --local user.name "huoruiwen"
+          git add -A
+          git commit -m "AUTO CI"
+          git push
