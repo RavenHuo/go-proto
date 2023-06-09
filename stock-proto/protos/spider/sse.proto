@@ -39,6 +39,6 @@ message SSEStockOption {
     string securityID             = 31;
     string security_name_byID     = 32;
     string contract_flag          = 33;
-    string underlying_closePX     = 34;
+    string underlying_closePX     = 35;
   }
   
