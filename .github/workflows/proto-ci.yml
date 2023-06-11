@@ -20,7 +20,9 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y protobuf-compiler
 
       - name: Execute Auto Build Shell Script
-        run: sh stock-proto/make.sh
+        run: |
+          cd stock-proto
+          sh make.sh
 
       - name: Commit And Push Change
         # 换行就用 |
