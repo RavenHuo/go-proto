@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  auto_proto+ci:
+  auto_proto_ci:
     # 工作流程中的push_files作业运行在ubuntu-latest环境中，即Ubuntu操作系统的最新版本。
     runs-on: ubuntu-latest
 
