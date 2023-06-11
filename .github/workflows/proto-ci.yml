@@ -15,6 +15,7 @@ jobs:
         # 是一个官方提供的操作，它会自动检出仓库的代码，默认情况下会将代码检出到工作目录中。这个操作可以用于不同类型的仓库，包括 GitHub 仓库、GitLab 仓库等。
         uses: actions/checkout@v2
 
+      # 安装 protoc
       - name: Install Protocol Buffers compiler
         run: sudo apt-get update && sudo apt-get install -y protobuf-compiler
 
