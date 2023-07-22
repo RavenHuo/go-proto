@@ -42,8 +42,8 @@ for dirName in */;do
         #--go_opt=paths=source_relative：指定了生成的 Go 代码中的 import 路径是相对路径。
         #$proto_file：指定了要编译的 .proto 文件的名称。
         #--plugin=protoc-gen-go=../../bin/protoc-gen-go.exe：指定了使用的插件，protoc-gen-go 是一个生成 Go 语言代码的插件，../../bin/protoc-gen-go.exe 是插件的路径。
-#        $PROTOC --proto_path=${dirName} --proto_path=. --go_out=plugins=grpc:../${pb_package}/${dirName}  --go-grpc_out=. --go-grpc_opt=paths=source_relative $proto_file
-        $PROTOC --proto_path=${dirName} --proto_path=. --go_out=plugins=grpc:../${pb_package}/${dirName}  --go_opt=paths=source_relative $proto_file
+        $PROTOC --proto_path=${dirName} --proto_path=. --go_out=plugins=grpc:../${pb_package}/${dirName}  --go-grpc_out=. --go-grpc_opt=paths=source_relative $proto_file
+#        $PROTOC --proto_path=${dirName} --proto_path=. --go_out=plugins=grpc:../${pb_package}/${dirName}  --go_opt=paths=source_relative $proto_file
 #        $PROTOC --proto_path=${dirName} --proto_path=. --go_out=plugins=grpc:../${pb_package}/${dirName}  --go_opt=paths=source_relative $proto_file --plugin=protoc-gen-go=../../bin/protoc-gen-go.exe
 
   done
