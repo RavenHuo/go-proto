@@ -27,7 +27,8 @@ jobs:
       # 版本必须是1.3.5
       - name: Install protoc-gen-go
         run: |
-          go mod tidy
+          go get -u github.com/golang/protobuf/protoc-gen-go@v1.5.3
+          go get -u google.golang.org/grpc@v1.38.0
 
       - name: Execute Auto Build Shell Script
         run: |
