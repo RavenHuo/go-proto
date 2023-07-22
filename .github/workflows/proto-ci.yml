@@ -25,12 +25,12 @@ jobs:
           go-version: 1.16 # 替换为你希望使用的 Go 版本
 
       - name: Install protoc-gen-go
-        run: go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+        run: sudo go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 
 
       - name: Execute Auto Build Shell Script
+        working-directory: stock-proto
         run: |
-          cd stock-proto
           sh make.sh
 
       - name: Commit And Push Change
