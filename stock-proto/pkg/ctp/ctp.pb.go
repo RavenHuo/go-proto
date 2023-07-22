@@ -43259,7 +43259,9 @@ func init() {
 	proto.RegisterType((*CThostFtdcReqUnSubscribeForQuoteRsp)(nil), "ctp.CThostFtdcReqUnSubscribeForQuoteRsp")
 }
 
-func init() { proto.RegisterFile("ctp.proto", fileDescriptor_90978c7c94813702) }
+func init() {
+	proto.RegisterFile("ctp.proto", fileDescriptor_90978c7c94813702)
+}
 
 var fileDescriptor_90978c7c94813702 = []byte{
 	// 21613 bytes of a gzipped FileDescriptorProto

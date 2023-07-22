@@ -223,7 +223,9 @@ func init() {
 	proto.RegisterType((*RealtimeMoneyTrendItemList)(nil), "goshare.RealtimeMoneyTrendItemList")
 }
 
-func init() { proto.RegisterFile("others.proto", fileDescriptor_9597193cc8d6d418) }
+func init() {
+	proto.RegisterFile("others.proto", fileDescriptor_9597193cc8d6d418)
+}
 
 var fileDescriptor_9597193cc8d6d418 = []byte{
 	// 377 bytes of a gzipped FileDescriptorProto

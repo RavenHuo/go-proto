@@ -1620,7 +1620,9 @@ func init() {
 	proto.RegisterType((*CommonResponse)(nil), "goshare.CommonResponse")
 }
 
-func init() { proto.RegisterFile("common.proto", fileDescriptor_555bd8c177793206) }
+func init() {
+	proto.RegisterFile("common.proto", fileDescriptor_555bd8c177793206)
+}
 
 var fileDescriptor_555bd8c177793206 = []byte{
 	// 2037 bytes of a gzipped FileDescriptorProto

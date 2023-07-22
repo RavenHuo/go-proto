@@ -860,7 +860,9 @@ func init() {
 	proto.RegisterType((*JointOrder)(nil), "goshare.JointOrder")
 }
 
-func init() { proto.RegisterFile("order.proto", fileDescriptor_cd01338c35d87077) }
+func init() {
+	proto.RegisterFile("order.proto", fileDescriptor_cd01338c35d87077)
+}
 
 var fileDescriptor_cd01338c35d87077 = []byte{
 	// 1467 bytes of a gzipped FileDescriptorProto

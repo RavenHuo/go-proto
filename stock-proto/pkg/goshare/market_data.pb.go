@@ -1260,7 +1260,9 @@ func init() {
 	proto.RegisterType((*CtpFutureOverview_RankItem)(nil), "goshare.CtpFutureOverview.RankItem")
 }
 
-func init() { proto.RegisterFile("market_data.proto", fileDescriptor_fe080a1ca5f6ba79) }
+func init() {
+	proto.RegisterFile("market_data.proto", fileDescriptor_fe080a1ca5f6ba79)
+}
 
 var fileDescriptor_fe080a1ca5f6ba79 = []byte{
 	// 1201 bytes of a gzipped FileDescriptorProto

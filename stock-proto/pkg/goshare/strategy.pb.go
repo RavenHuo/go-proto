@@ -290,7 +290,9 @@ func init() {
 	proto.RegisterType((*SignalList)(nil), "goshare.SignalList")
 }
 
-func init() { proto.RegisterFile("strategy.proto", fileDescriptor_46ec5ce6dd46feab) }
+func init() {
+	proto.RegisterFile("strategy.proto", fileDescriptor_46ec5ce6dd46feab)
+}
 
 var fileDescriptor_46ec5ce6dd46feab = []byte{
 	// 466 bytes of a gzipped FileDescriptorProto

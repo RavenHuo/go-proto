@@ -812,7 +812,9 @@ func init() {
 	proto.RegisterType((*UniqueSymbol)(nil), "goshare.UniqueSymbol")
 }
 
-func init() { proto.RegisterFile("instrument.proto", fileDescriptor_69acdecad89c38f8) }
+func init() {
+	proto.RegisterFile("instrument.proto", fileDescriptor_69acdecad89c38f8)
+}
 
 var fileDescriptor_69acdecad89c38f8 = []byte{
 	// 1261 bytes of a gzipped FileDescriptorProto

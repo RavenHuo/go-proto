@@ -8,6 +8,8 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -385,7 +387,9 @@ func init() {
 	proto.RegisterType((*NewAccountResp)(nil), "goshare.spider.NewAccountResp")
 }
 
-func init() { proto.RegisterFile("service.proto", fileDescriptor_a0b84a42fa06f626) }
+func init() {
+	proto.RegisterFile("service.proto", fileDescriptor_a0b84a42fa06f626)
+}
 
 var fileDescriptor_a0b84a42fa06f626 = []byte{
 	// 407 bytes of a gzipped FileDescriptorProto
@@ -419,11 +423,11 @@ var fileDescriptor_a0b84a42fa06f626 = []byte{
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConn
+var _ grpc.ClientConnInterface
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion4
+const _ = grpc.SupportPackageIsVersion6
 
 // StockFinanceSystemServiceClient is the client API for StockFinanceSystemService service.
 //
@@ -435,10 +439,10 @@ type StockFinanceSystemServiceClient interface {
 }
 
 type stockFinanceSystemServiceClient struct {
-	cc *grpc.ClientConn
+	cc grpc.ClientConnInterface
 }
 
-func NewStockFinanceSystemServiceClient(cc *grpc.ClientConn) StockFinanceSystemServiceClient {
+func NewStockFinanceSystemServiceClient(cc grpc.ClientConnInterface) StockFinanceSystemServiceClient {
 	return &stockFinanceSystemServiceClient{cc}
 }
 
@@ -474,6 +478,20 @@ type StockFinanceSystemServiceServer interface {
 	BuyStock(context.Context, *BuyStockRequest) (*BuyStockResponse, error)
 	SellStock(context.Context, *SellStockRequest) (*SellStockResponse, error)
 	NewAccount(context.Context, *NewAccountReq) (*NewAccountResp, error)
+}
+
+// UnimplementedStockFinanceSystemServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedStockFinanceSystemServiceServer struct {
+}
+
+func (*UnimplementedStockFinanceSystemServiceServer) BuyStock(ctx context.Context, req *BuyStockRequest) (*BuyStockResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BuyStock not implemented")
+}
+func (*UnimplementedStockFinanceSystemServiceServer) SellStock(ctx context.Context, req *SellStockRequest) (*SellStockResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SellStock not implemented")
+}
+func (*UnimplementedStockFinanceSystemServiceServer) NewAccount(ctx context.Context, req *NewAccountReq) (*NewAccountResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NewAccount not implemented")
 }
 
 func RegisterStockFinanceSystemServiceServer(s *grpc.Server, srv StockFinanceSystemServiceServer) {

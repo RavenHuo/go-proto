@@ -9,6 +9,8 @@ import (
 	spider "github.com/RavenHuo/go-proto/stock-proto/pkg/spider"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -1893,7 +1895,9 @@ func init() {
 	proto.RegisterType((*RspScan)(nil), "goshare.RspScan")
 }
 
-func init() { proto.RegisterFile("rpc.proto", fileDescriptor_77a6da22d6a3feb1) }
+func init() {
+	proto.RegisterFile("rpc.proto", fileDescriptor_77a6da22d6a3feb1)
+}
 
 var fileDescriptor_77a6da22d6a3feb1 = []byte{
 	// 1175 bytes of a gzipped FileDescriptorProto
@@ -1975,11 +1979,11 @@ var fileDescriptor_77a6da22d6a3feb1 = []byte{
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConn
+var _ grpc.ClientConnInterface
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion4
+const _ = grpc.SupportPackageIsVersion6
 
 // KlineCacheClient is the client API for KlineCache service.
 //
@@ -2018,10 +2022,10 @@ type KlineCacheClient interface {
 }
 
 type klineCacheClient struct {
-	cc *grpc.ClientConn
+	cc grpc.ClientConnInterface
 }
 
-func NewKlineCacheClient(cc *grpc.ClientConn) KlineCacheClient {
+func NewKlineCacheClient(cc grpc.ClientConnInterface) KlineCacheClient {
 	return &klineCacheClient{cc}
 }
 
@@ -2192,6 +2196,56 @@ type KlineCacheServer interface {
 	ReverseScan(context.Context, *ReqReverseScan) (*RspReverseScan, error)
 	// 扫描
 	Scan(context.Context, *ReqScan) (*RspScan, error)
+}
+
+// UnimplementedKlineCacheServer can be embedded to have forward compatible implementations.
+type UnimplementedKlineCacheServer struct {
+}
+
+func (*UnimplementedKlineCacheServer) SaveKlineSeries(ctx context.Context, req *ReqSaveKlineSeries) (*RspSaveKlineSeries, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaveKlineSeries not implemented")
+}
+func (*UnimplementedKlineCacheServer) GetKlineSeries(ctx context.Context, req *ReqGetKlineSeries) (*RspGetKlineSeries, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetKlineSeries not implemented")
+}
+func (*UnimplementedKlineCacheServer) SaveInstrument(ctx context.Context, req *ReqSaveInstrument) (*RspSaveInstrument, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaveInstrument not implemented")
+}
+func (*UnimplementedKlineCacheServer) GetInstrument(ctx context.Context, req *ReqGetInstrument) (*RspGetInstrument, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetInstrument not implemented")
+}
+func (*UnimplementedKlineCacheServer) GetInstrumentList(ctx context.Context, req *ReqGetInstrumentList) (*RspGetInstrumentList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetInstrumentList not implemented")
+}
+func (*UnimplementedKlineCacheServer) SaveBonusHistory(ctx context.Context, req *ReqSaveBonusHistory) (*RspSaveBonusHistory, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaveBonusHistory not implemented")
+}
+func (*UnimplementedKlineCacheServer) GetBonusHistory(ctx context.Context, req *ReqGetBonusHistory) (*RspGetBonusHistory, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBonusHistory not implemented")
+}
+func (*UnimplementedKlineCacheServer) BatchDelete(ctx context.Context, req *ReqBatchDelete) (*RspBatchDelete, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BatchDelete not implemented")
+}
+func (*UnimplementedKlineCacheServer) BatchGet(ctx context.Context, req *ReqBatchGet) (*RspBatchGet, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BatchGet not implemented")
+}
+func (*UnimplementedKlineCacheServer) BatchPut(ctx context.Context, req *ReqBatchPut) (*RspBatchPut, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BatchPut not implemented")
+}
+func (*UnimplementedKlineCacheServer) Delete(ctx context.Context, req *ReqDelete) (*RspDelete, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (*UnimplementedKlineCacheServer) Get(ctx context.Context, req *ReqGet) (*RspGet, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (*UnimplementedKlineCacheServer) Put(ctx context.Context, req *ReqPut) (*RspPut, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Put not implemented")
+}
+func (*UnimplementedKlineCacheServer) ReverseScan(ctx context.Context, req *ReqReverseScan) (*RspReverseScan, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReverseScan not implemented")
+}
+func (*UnimplementedKlineCacheServer) Scan(ctx context.Context, req *ReqScan) (*RspScan, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Scan not implemented")
 }
 
 func RegisterKlineCacheServer(s *grpc.Server, srv KlineCacheServer) {

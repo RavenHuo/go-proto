@@ -505,7 +505,9 @@ func init() {
 	proto.RegisterType((*Session)(nil), "goshare.Session")
 }
 
-func init() { proto.RegisterFile("user.proto", fileDescriptor_116e343673f7ffaf) }
+func init() {
+	proto.RegisterFile("user.proto", fileDescriptor_116e343673f7ffaf)
+}
 
 var fileDescriptor_116e343673f7ffaf = []byte{
 	// 512 bytes of a gzipped FileDescriptorProto

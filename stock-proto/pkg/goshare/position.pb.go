@@ -1371,7 +1371,9 @@ func init() {
 	proto.RegisterType((*CloseTradeMatchList)(nil), "goshare.CloseTradeMatchList")
 }
 
-func init() { proto.RegisterFile("position.proto", fileDescriptor_56e266f1a28a7893) }
+func init() {
+	proto.RegisterFile("position.proto", fileDescriptor_56e266f1a28a7893)
+}
 
 var fileDescriptor_56e266f1a28a7893 = []byte{
 	// 1502 bytes of a gzipped FileDescriptorProto

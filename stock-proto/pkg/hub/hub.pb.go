@@ -249,7 +249,9 @@ func init() {
 	proto.RegisterType((*ReqCancelOrder)(nil), "goshare.hub.ReqCancelOrder")
 }
 
-func init() { proto.RegisterFile("hub.proto", fileDescriptor_b3103f8d3056b01c) }
+func init() {
+	proto.RegisterFile("hub.proto", fileDescriptor_b3103f8d3056b01c)
+}
 
 var fileDescriptor_b3103f8d3056b01c = []byte{
 	// 329 bytes of a gzipped FileDescriptorProto

@@ -194,7 +194,9 @@ func init() {
 	proto.RegisterType((*Branch)(nil), "goshare.Branch")
 }
 
-func init() { proto.RegisterFile("branch.proto", fileDescriptor_20ce1f5884b7e047) }
+func init() {
+	proto.RegisterFile("branch.proto", fileDescriptor_20ce1f5884b7e047)
+}
 
 var fileDescriptor_20ce1f5884b7e047 = []byte{
 	// 303 bytes of a gzipped FileDescriptorProto

@@ -1248,7 +1248,9 @@ func init() {
 	proto.RegisterType((*RspOrderInsert)(nil), "goshare.RspOrderInsert")
 }
 
-func init() { proto.RegisterFile("trading.proto", fileDescriptor_102317da1eced062) }
+func init() {
+	proto.RegisterFile("trading.proto", fileDescriptor_102317da1eced062)
+}
 
 var fileDescriptor_102317da1eced062 = []byte{
 	// 1888 bytes of a gzipped FileDescriptorProto
