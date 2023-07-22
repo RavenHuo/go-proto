@@ -29,8 +29,8 @@ jobs:
 
 
       - name: Execute Auto Build Shell Script
-        working-directory: stock-proto
         run: |
+          cd stock-proto
           sh make.sh
 
       - name: Commit And Push Change
