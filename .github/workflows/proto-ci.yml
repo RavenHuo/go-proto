@@ -26,9 +26,9 @@ jobs:
 
       - name: Install protoc-gen-go
         run: |
-          go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.27.1
-          go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1.0
-  
+#          go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.27.1
+#          go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1.0
+          GO111MODULE=on go get -u github.com/golang/protobuf/protoc-gen-go@v1.3.5
 
       - name: Execute Auto Build Shell Script
         run: |
