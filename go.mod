@@ -3,7 +3,7 @@ module github.com/RavenHuo/go-proto
 go 1.17
 
 require (
-	github.com/golang/protobuf v1.3.5
+	github.com/golang/protobuf v1.5.3
 	google.golang.org/grpc v1.34.0-dev
 )
 
@@ -15,5 +15,5 @@ require (
 	golang.org/x/net v0.8.0 // indirect
 	golang.org/x/sys v0.6.0 // indirect
 	golang.org/x/text v0.8.0 // indirect
-	google.golang.org/protobuf v1.26.0-rc.1 // indirect
+	google.golang.org/protobuf v1.31.0 // indirect
 )
