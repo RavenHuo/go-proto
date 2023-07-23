@@ -30,16 +30,21 @@ jobs:
           go get -u github.com/golang/protobuf/protoc-gen-go@v1.5.3
           go get -u google.golang.org/grpc@v1.38.0
 
-      - name: Execute Auto Build Shell Script
+      - name: stock-proto Execute Auto Build Shell Script
         run: |
           cd stock-proto
+          sh make.sh
+
+      - name: freewheeling Execute Auto Build Shell Script
+        run: |
+          cd freewheeling
           sh make.sh
 
       - name: Commit And Push Change
         # 换行就用 |
         run: |
           git config --local user.email "965195920@qq.com"
-          git config --local user.name "huoruiwen"
+          git config --local user.name "git workflow"
           git add -A
           git commit -m "AUTO CI"
           git push

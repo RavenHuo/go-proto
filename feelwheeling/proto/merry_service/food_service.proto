@@ -1,0 +1,35 @@
+syntax = "proto3";
+package food_service;
+option go_package = "github.com/RavenHuo/freewheeling/pkg/merry_service";
+
+service FoodService {
+  rpc ListFood(ListFoodReq) returns(ListFoodResp);
+  rpc CreateOrUpdateFood(Food) returns(CreateOrUpdateFoodResp);
+  rpc RandomOne(RandomOneReq) returns(Food);
+}
+
+message ListFoodReq {
+  int32 page = 1;
+  int32 limit = 2;
+  string name = 3;
+}
+
+message ListFoodResp {
+  int32 total = 1;
+  repeated Food list = 2;
+}
+
+message Food {
+  string id = 1;
+  string name = 2;
+  string introduce = 3;
+  string pic = 4;
+  string video = 5;
+}
+
+message CreateOrUpdateFoodResp {
+
+}
+message RandomOneReq {
+
+}
