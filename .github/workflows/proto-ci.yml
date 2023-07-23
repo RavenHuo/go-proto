@@ -34,10 +34,12 @@ jobs:
         working-directory: stock-proto
         run: |
           sh make.sh
+          cd /
 
       - name: freewheeling Execute Auto Build Shell Script
         working-directory: freewheeling
         run: |
+          pwd
           sh make.sh
 
       - name: Commit And Push Change
