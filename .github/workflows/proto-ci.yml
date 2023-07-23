@@ -37,7 +37,7 @@ jobs:
 
       - name: freewheeling Execute Auto Build Shell Script
         run: |
-          cd freewheeling
+          cd ../freewheeling
           sh make.sh
 
       - name: Commit And Push Change
