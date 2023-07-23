@@ -31,13 +31,13 @@ jobs:
           go get -u google.golang.org/grpc@v1.38.0
 
       - name: stock-proto Execute Auto Build Shell Script
+        working-directory: stock-proto
         run: |
-          cd /stock-proto
           sh make.sh
 
       - name: freewheeling Execute Auto Build Shell Script
+        working-directory: freewheeling
         run: |
-          cd /freewheeling
           sh make.sh
 
       - name: Commit And Push Change
