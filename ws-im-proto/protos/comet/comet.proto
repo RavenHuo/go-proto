@@ -1,0 +1,89 @@
+syntax = "proto3";
+package comet;
+option go_package = "github.com/RavenHuo/go-proto/ws-im-proto/pkg/comet";
+
+/*
+ * v0.0.2
+ * protocol
+ */
+ message Proto {
+    // invariant
+    int32 ver = 1;
+    int32 crypt = 2;
+    int32 zip = 3;
+    // change
+    int32 op = 4;
+    int32 seq = 5;
+    bytes body = 6;
+    // other
+    map<int32,bytes> ext = 7;
+}
+
+message PushMsgReq {
+    string roomID = 1;
+    repeated string keys = 2;
+    repeated string accepts = 3;
+    Proto proto = 4;
+    map<int64, bool> uids = 5;
+}
+
+message PushMsgReply {
+}
+
+message BroadcastReq {
+    repeated string accepts = 1;
+    Proto proto = 2;
+    int32 speed = 3;
+}
+
+message BroadcastReply {
+}
+
+message BroadcastRoomReq {
+    string roomID = 1;
+    Proto proto = 2;
+    repeated string accepts = 3;
+    map<int64, bool> uid_map = 4;
+    map<int64, bool> not_uid_map = 5;
+}
+
+message BroadcastRoomReply {
+}
+
+message RoomsReq {
+}
+
+message RoomsReply {
+    map<string, bool> rooms = 1;
+}
+
+service Comet {
+    // PushMsg push by key or mid
+    rpc PushMsg (PushMsgReq) returns (PushMsgReply);
+    // Broadcast send to every entity
+    rpc Broadcast (BroadcastReq) returns (BroadcastReply);
+    // BroadcastRoom broadcast to one room
+    rpc BroadcastRoom (BroadcastRoomReq) returns (BroadcastRoomReply);
+    // Rooms get all rooms
+    rpc Rooms (RoomsReq) returns (RoomsReply);
+
+    // 查询房间基础数据
+    rpc RoomData(RoomDataReq) returns (RoomDataReply);
+}
+
+message RoomDataReq {
+  repeated string rids = 1;
+}
+
+message Channel {
+   string key = 1;
+   int64 uid = 2;
+   int64 ts = 3; // 进房毫秒时间戳
+}
+
+message RoomDataReply {
+   message ChannelList {
+      repeated Channel channels = 1;
+   }
+   map<string, ChannelList> rid2channels = 1;
+}

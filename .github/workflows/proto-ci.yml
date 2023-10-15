@@ -41,6 +41,14 @@ jobs:
         run: |
           pwd
           sh make.sh
+          cd /
+
+      - name: ws-im Execute Auto Build Shell Script
+        working-directory: ws-im-proto
+        run: |
+          pwd
+          sh make.sh
+          cd /          
 
       - name: Commit And Push Change
         # 换行就用 |

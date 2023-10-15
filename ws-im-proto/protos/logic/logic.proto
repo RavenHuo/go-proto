@@ -1,0 +1,227 @@
+syntax = "proto3";
+package logic;
+option go_package = "github.com/RavenHuo/go-proto/ws-im-proto/pkg/logic";
+
+/*
+ * v0.0.2
+ * protocol
+ */
+ message Proto {
+    // invariant
+    int32 ver = 1;
+    int32 crypt = 2;
+    int32 zip = 3;
+    // change
+    int32 op = 4;
+    int32 seq = 5;
+    bytes body = 6;
+    // other
+    map<int32,bytes> ext = 7;
+}
+
+message PushMsg {
+    enum Type {
+        PUSH = 0;
+        ROOM = 1;
+        BROADCAST = 2;
+    }
+    Type type = 1;
+    repeated string accepts = 2;
+    int32 speed = 3;
+    string server = 4;
+    string room = 5;
+    repeated string keys = 6;
+    bytes msg = 7;
+    map<int64, bool> uid_map = 8;
+    map<int64, bool> not_uid_map = 9;
+    int32 op = 10;
+}
+
+message ConnectReq {
+    string server = 1;
+    string cookie = 2;
+    bytes body = 3;
+}
+
+message ConnectReply {
+    int64 mid = 1;
+    string key = 2;
+    string gid = 3;
+    string roomID = 4;
+    repeated string accepts = 5;
+    int64 heartbeat = 6;
+}
+
+message DisconnectReq {
+    int64 mid = 1;
+    string key = 2;
+    string server = 3;
+    string room_id = 4;
+}
+
+message DisconnectReply {
+    bool has = 1;
+}
+
+message HeartbeatReq {
+    int64 mid = 1;
+    string key = 2;
+    string server = 3;
+    string room_id = 4;
+}
+
+message HeartbeatReply {
+}
+
+message ChangeRoomReq {
+    int64 mid = 1;
+    string key = 2;
+    string server = 3;
+    string room_id = 4;
+    string old_room_id = 5;
+}
+
+message ChangeRoomRes {
+}
+
+message RidMidStampReq {
+    string room_id = 1; // 房间id
+    bool near = 2; // 决定返回的最近进房的stamp顺序
+}
+
+message RidMidStampRes {
+    map<int64, int32> mid_stamp = 1; // 返回用户id以及进房时间
+}
+
+message OnlineReq {
+    string server = 1;
+    map<string, int32> roomCount = 2;
+}
+
+message OnlineReply {
+    map<string, int32> allRoomCount = 1;
+}
+
+message ReceiveReq {
+    int64 mid = 1;
+    Proto proto = 2;
+}
+
+message ReceiveReply {
+}
+
+message NodesReq {
+    string platform = 1;
+    string clientIP = 2;
+}
+
+message NodesReply {
+    string domain = 1;
+    int32 tcp_port = 2;
+    int32 ws_port = 3;
+    int32 wss_port = 4;
+    int32 heartbeat = 5;
+    repeated string nodes = 6;
+    Backoff backoff = 7;
+    int32 heartbeat_max = 8;
+}
+
+message Backoff {
+    int32 max_delay = 1;
+    int32 base_delay = 2;
+    float factor = 3;
+    float jitter = 4;
+}
+
+message PushUsersReq {
+    repeated int64 user_ids = 1;
+    bytes body = 2;
+    string room_id = 3;
+    repeated string accepts = 4;
+}
+
+message UserInfo {
+    int64 user_id = 1;
+    string cluster = 2;
+}
+
+message PushUsersReliablyReq {
+    repeated UserInfo users = 1;
+    bytes body = 2;
+    repeated string accepts = 3;
+}
+
+message PushTagReq {
+    repeated string accepts = 1;
+    bytes body = 2;
+    string room_id = 3;
+    map<int64, bool> uid_map = 4;
+    map<int64, bool> not_uid_map = 5;
+}
+
+message PushAllReq {
+    repeated string accepts = 1;
+    int32 speed = 2;
+    bytes body = 3;
+}
+
+message CommonRsp {
+}
+
+message OnlineRoomCountReq {
+    repeated string room_id = 1;
+    bool includeGuest = 2;
+}
+
+message OnlineRoomCountRsp {
+    repeated OnlineRoomCount OnlineRoomList = 1;
+}
+
+message OnlineRoomCount {
+    string room_id = 1;
+    int64 count = 2;
+}
+
+message GetUserOnlineStatusReq {
+    repeated int64 user_ids = 1;
+    string room_id = 2;
+}
+
+message GetUserOnlineStatusRsp {
+    repeated UserOnlineStatus entity = 1;
+}
+
+message UserOnlineStatus {
+    int64 user_id = 1;
+    bool is_online = 2;
+}
+
+service Logic {
+    // Connect
+    rpc Connect (ConnectReq) returns (ConnectReply);
+    // Disconnect
+    rpc Disconnect (DisconnectReq) returns (DisconnectReply);
+    // Heartbeat
+    rpc Heartbeat (HeartbeatReq) returns (HeartbeatReply);
+    // ChangeRoom
+    rpc ChangeRoom (ChangeRoomReq) returns (ChangeRoomRes);
+    // RidMidStamp
+    rpc RidMidStamp (RidMidStampReq) returns (RidMidStampRes);
+    // RenewOnline
+    rpc RenewOnline (OnlineReq) returns (OnlineReply);
+    // Receive
+    rpc Receive (ReceiveReq) returns (ReceiveReply);
+    // ServerList
+    rpc Nodes (NodesReq) returns (NodesReply);
+    // Push Msg
+    rpc PushUsers (PushUsersReq) returns (CommonRsp);
+    rpc PushUsersReliably (PushUsersReliablyReq) returns (CommonRsp);
+    rpc PushTag (PushTagReq) returns (CommonRsp);
+    rpc PushAll (PushAllReq) returns (CommonRsp);
+    rpc OnlineRoomCount (OnlineRoomCountReq) returns (OnlineRoomCountRsp);
+    rpc GetUserOnlineStatus (GetUserOnlineStatusReq) returns (GetUserOnlineStatusRsp);
+    // Forward Msg Api
+    rpc ReceivePushUsers (PushUsersReq) returns (CommonRsp);
+    rpc ReceivePushTag (PushTagReq) returns (CommonRsp);
+    rpc ReceivePushAll (PushAllReq) returns (CommonRsp);
+}
