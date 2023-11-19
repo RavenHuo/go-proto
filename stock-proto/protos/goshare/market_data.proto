@@ -91,6 +91,7 @@ message Kline {
   double amount           = 7;  // 成交额
   int32  position         = 8;  // 持仓量
   int32  trading_day      = 9;  // 交易日
+  dpouble turnoverrate    = 10; // 换手率
 }
 
 // KlineSeries K线序列
