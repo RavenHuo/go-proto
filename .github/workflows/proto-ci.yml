@@ -33,6 +33,7 @@ jobs:
       - name: stock-proto Execute Auto Build Shell Script
         working-directory: stock-proto
         run: |
+          pwd
           sh make.sh
           cd /
 
